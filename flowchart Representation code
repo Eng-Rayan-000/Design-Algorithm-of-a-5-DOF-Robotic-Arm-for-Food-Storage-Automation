@@ -1,0 +1,18 @@
+## graph TD
+    A[Start] --> B[Warehouse Mapping]
+    B --> C[Object Detection]
+    C --> D{New Task from WMS?}
+    D -- Yes --> E[Validate Item/Destination]
+    D -- No --> D
+    E --> F[Path Planning]
+    F --> G[Motion Execution]
+    G --> H[Grasp Item]
+    H --> I[Confirm Grip]
+    I -- Success --> J[Transport Item]
+    I -- Fail --> K[Retry/Alert]
+    J --> L[Place Item]
+    L --> M[Confirm Placement]
+    M -- Success --> N[Reset to Neutral]
+    M -- Fail --> O[Retry/Alert]
+    N --> D
+    K & O --> P[Log Error] --> D
